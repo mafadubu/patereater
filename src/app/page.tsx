@@ -95,8 +95,8 @@ function PortfolioContent() {
           className="relative w-full px-4 md:px-8 pb-4 flex flex-col items-start gap-4"
           style={{ paddingTop: smoothPaddingTop }}
         >
-          <div className="flex flex-nowrap items-baseline gap-4 md:gap-10 w-full relative overflow-x-auto no-scrollbar">
-            <h1 className="font-black text-[15px] md:text-[22px] whitespace-nowrap tracking-tight text-stone-900 shrink-0">
+          <div className="flex flex-nowrap items-center gap-4 md:gap-10 w-full relative overflow-x-auto no-scrollbar">
+            <h1 className="font-black text-[15px] md:text-[22px] whitespace-nowrap tracking-tight text-stone-900 shrink-0 pb-1">
               책 먹는 편집자의 블로그
             </h1>
 
@@ -182,7 +182,7 @@ function PortfolioContent() {
       <div className="w-full px-8">
         {/* Notion-Style Filter Dashboard - Only show when no book is selected */}
         {currentTab === "Home" && !selectedBook && (
-          <div className="flex flex-wrap items-center gap-2 text-[13px] w-full pt-1 pb-1 relative border-t border-black/5">
+          <div className="flex flex-nowrap items-center gap-2 text-[13px] w-full pt-1 pb-1 relative border-t border-black/5 overflow-x-auto no-scrollbar">
             {/* Click-away backdrop */}
             {activeDropdown && (
               <div
@@ -190,16 +190,16 @@ function PortfolioContent() {
                 onClick={() => setActiveDropdown(null)}
               />
             )}
-            <div className="text-stone-400 font-semibold mr-4 flex items-center gap-2">
+            <div className="text-stone-400 font-semibold mr-4 flex items-center gap-2 shrink-0">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m21 16-4 4-4-4" /><path d="M17 20V4" /><path d="m3 8 4-4 4 4" /><path d="M7 4v16" /></svg>
               Sort
             </div>
 
             {/* 분야 (카테고리) */}
-            <div className="relative">
+            <div className="relative shrink-0">
               <button
                 onClick={() => toggleDropdown("카테고리")}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-stone-50 transition-colors border border-stone-100"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-stone-50 transition-colors border border-stone-100 whitespace-nowrap"
               >
                 <span className="text-stone-400 font-medium">분야</span>
                 <span className="font-bold text-stone-700">{selectedCategory}</span>
@@ -233,10 +233,10 @@ function PortfolioContent() {
             </div>
 
             {/* 연도 */}
-            <div className="relative">
+            <div className="relative shrink-0">
               <button
                 onClick={() => toggleDropdown("연도")}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-stone-50 transition-colors border border-stone-100"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-stone-50 transition-colors border border-stone-100 whitespace-nowrap"
               >
                 <span className="text-stone-400 font-medium">연도</span>
                 <span className="font-bold text-stone-700">{selectedYear}</span>
@@ -270,10 +270,10 @@ function PortfolioContent() {
             </div>
 
             {/* 출판사 */}
-            <div className="relative">
+            <div className="relative shrink-0">
               <button
                 onClick={() => toggleDropdown("출판사")}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-stone-50 transition-colors border border-stone-100"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-stone-50 transition-colors border border-stone-100 whitespace-nowrap"
               >
                 <span className="text-stone-400 font-medium">출판사</span>
                 <span className="font-bold text-stone-700">{selectedPublisher}</span>
@@ -311,17 +311,17 @@ function PortfolioContent() {
         )}
 
         {currentTab === "Posting" && !selectedBook && (
-          <div className="flex items-center gap-3 text-[13px] w-full pt-1">
-            <div className="text-stone-400 font-semibold mr-4 flex items-center gap-2">
+          <div className="flex flex-nowrap items-center gap-3 text-[13px] w-full pt-1 overflow-x-auto no-scrollbar">
+            <div className="text-stone-400 font-semibold mr-4 flex items-center gap-2 shrink-0">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m21 16-4 4-4-4" /><path d="M17 20V4" /><path d="m3 8 4-4 4 4" /><path d="M7 4v16" /></svg>
               Sort
             </div>
 
-            <button className="text-stone-700 font-bold px-3 py-1.5 rounded-md border border-stone-100 bg-stone-50 transition-colors">전체</button>
-            <button className="text-stone-400 font-semibold px-3 py-1.5 rounded-md border border-stone-100 hover:bg-stone-50 transition-colors">월간 표1</button>
-            <button className="text-stone-400 font-semibold px-3 py-1.5 rounded-md border border-stone-100 hover:bg-stone-50 transition-colors">편집</button>
-            <button className="text-stone-400 font-semibold px-3 py-1.5 rounded-md border border-stone-100 hover:bg-stone-50 transition-colors">책</button>
-            <button className="text-stone-400 font-semibold px-3 py-1.5 rounded-md border border-stone-100 hover:bg-stone-50 transition-colors">음악</button>
+            <button className="text-stone-700 font-bold px-3 py-1.5 rounded-md border border-stone-100 bg-stone-50 transition-colors shrink-0 whitespace-nowrap">전체</button>
+            <button className="text-stone-400 font-semibold px-3 py-1.5 rounded-md border border-stone-100 hover:bg-stone-50 transition-colors shrink-0 whitespace-nowrap">월간 표1</button>
+            <button className="text-stone-400 font-semibold px-3 py-1.5 rounded-md border border-stone-100 hover:bg-stone-50 transition-colors shrink-0 whitespace-nowrap">편집</button>
+            <button className="text-stone-400 font-semibold px-3 py-1.5 rounded-md border border-stone-100 hover:bg-stone-50 transition-colors shrink-0 whitespace-nowrap">책</button>
+            <button className="text-stone-400 font-semibold px-3 py-1.5 rounded-md border border-stone-100 hover:bg-stone-50 transition-colors shrink-0 whitespace-nowrap">음악</button>
 
             <div className="flex-1" />
           </div>
