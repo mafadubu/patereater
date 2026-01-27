@@ -1,0 +1,103 @@
+"use client"
+
+import { motion } from "framer-motion"
+
+interface BookData {
+    id: string
+    title: string
+    subtitle?: string
+    author: string
+    category?: string
+    description?: string
+    color: string
+    image?: string
+    backImage?: string
+    spineImage?: string
+    width?: number // mm
+    height?: number // mm
+    depth?: number // mm
+}
+
+interface GridProps {
+    books: BookData[]
+    onSelect: (book: BookData) => void
+}
+
+export function Grid({ books, onSelect }: GridProps) {
+    // scale increased to fit approx 7 books per row instead of 9
+    const SCALE = 1.15
+
+    return (
+        <div className="w-full pt-0 pb-12 px-6">
+            {/* 
+                gap-x-6: Reduced by half for higher density
+                gap-y-10: Reduced by half for a tighter vertical packing
+            */}
+            <div className="flex flex-wrap justify-start items-end gap-x-6 gap-y-10 w-full mx-auto">
+                {books.map((book) => {
+                    // Default if missing
+                    const w_mm = book.width || 150
+                    const h_mm = book.height || 220
+
+                    // Calculate display pixels
+                    const w_px = w_mm * SCALE
+                    const h_px = h_mm * SCALE
+
+                    return (
+                        <motion.div
+                            key={book.id}
+                            onClick={() => onSelect(book)}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            whileHover="hover"
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5 }}
+                            className="group cursor-pointer flex flex-col items-center flex-shrink-0 select-none outline-none relative"
+                            style={{ width: w_px }}
+                        >
+                            <div
+                                className="relative bg-white border border-stone-100 shadow-sm transform transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl origin-bottom overflow-hidden rounded-sm"
+                                style={{
+                                    width: w_px,
+                                    height: h_px,
+                                }}
+                            >
+                                {/* Image if available */}
+                                {book.image && (
+                                    <img
+                                        src={book.image}
+                                        alt={book.title}
+                                        className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-[0.7]"
+                                    />
+                                )}
+
+                                {!book.image && (
+                                    <div className="p-4 h-full flex flex-col justify-between text-stone-900 bg-stone-50 transition-all duration-700 group-hover:brightness-[0.9]">
+                                        <h3 className="font-bold text-sm leading-tight tracking-tight">{book.title}</h3>
+                                        <p className="text-[10px] font-medium text-stone-400 uppercase tracking-widest">{book.author}</p>
+                                    </div>
+                                )}
+
+                                {/* Fade In Hover Overlay with Explore Button Only */}
+                                <motion.div
+                                    className="absolute inset-0 bg-stone-900/60 z-20 flex items-center justify-center p-6 overflow-hidden"
+                                    initial={{ opacity: 0 }}
+                                    variants={{
+                                        hover: { opacity: 1 }
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    <div className="border-2 border-white px-6 py-2.5 hover:bg-white hover:text-stone-900 transition-colors">
+                                        <span className="text-white font-bold text-[15px] uppercase tracking-wider">
+                                            살펴보기
+                                        </span>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        </motion.div>
+                    )
+                })}
+            </div>
+        </div>
+    )
+}
