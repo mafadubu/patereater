@@ -96,7 +96,7 @@ function PortfolioContent() {
           style={{ paddingTop: smoothPaddingTop }}
         >
           <div className="flex flex-nowrap items-center gap-4 md:gap-10 w-full relative overflow-x-auto no-scrollbar">
-            <h1 className="font-black text-[15px] md:text-[22px] whitespace-nowrap tracking-tight text-stone-900 shrink-0 pb-1">
+            <h1 className="font-black text-[15px] md:text-[22px] whitespace-nowrap tracking-tight text-stone-900 shrink-0">
               책 먹는 편집자의 블로그
             </h1>
 
@@ -111,7 +111,7 @@ function PortfolioContent() {
                     setCurrentTab("Home")
                     router.push("/")
                   }}
-                  className={`text-[13px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer pb-1 relative 
+                  className={`text-[13px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative 
                     ${!scrolled || currentTab === "Home" ? "font-black text-stone-800" : "font-normal text-black"}
                   `}
                 >
@@ -157,7 +157,7 @@ function PortfolioContent() {
                   setCurrentTab("Posting")
                   router.push("/")
                 }}
-                className={`text-[13px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer pb-1 relative 
+                className={`text-[13px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative 
                   ${!scrolled || currentTab === "Posting" ? "font-black text-stone-800" : "font-normal text-black"}
                 `}
               >
@@ -168,7 +168,7 @@ function PortfolioContent() {
                   setCurrentTab("Contact")
                   router.push("/")
                 }}
-                className={`text-[13px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer pb-1 relative 
+                className={`text-[13px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative 
                   ${!scrolled || currentTab === "Contact" ? "font-black text-stone-800" : "font-normal text-black"}
                 `}
               >
