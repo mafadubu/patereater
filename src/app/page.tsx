@@ -64,28 +64,29 @@ function PortfolioContent() {
   return (
     <main className="flex min-h-screen flex-col bg-white text-stone-900 font-sans">
       {/* Sticky Container for Header Logic */}
-      <div className="sticky top-0 z-[100] w-full">
-        {/* Static Background Color Bar */}
-        <div
-          className="absolute inset-0 bg-[#BFD5F2] origin-top h-[60px]"
-        />
+      <div className="sticky top-0 z-[100] w-full bg-white">
+        {/* Color Bar on Top */}
+        <div className="w-full h-8 bg-[#BFD5F2] border-b border-black/5" />
 
-        {/* Paper Texture Overlay on the background */}
-        <div className="absolute inset-0 opacity-[0.1] mix-blend-multiply pointer-events-none overflow-hidden"
-          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}>
-        </div>
+        <header className="relative w-full border-b border-black/10">
+          <div className="flex items-stretch w-full h-12 md:h-16">
+            {/* Title Block - Left */}
+            <div className="flex items-center px-4 md:px-8 border-r border-black/10">
+              <h1
+                className="font-black text-[14px] md:text-[22px] whitespace-nowrap tracking-tight text-stone-900 cursor-pointer"
+                onClick={() => {
+                  setCurrentTab("Home")
+                  router.push("/")
+                }}
+              >
+                책 먹는 편집자
+              </h1>
+            </div>
 
-        <header
-          className="relative w-full px-4 md:px-8 pb-4 pt-4 flex flex-col items-start gap-4"
-        >
-          <div className="flex flex-nowrap items-center gap-4 md:gap-10 w-full relative overflow-x-auto no-scrollbar">
-            <h1 className="font-black text-[15px] md:text-[22px] whitespace-nowrap tracking-tight text-stone-900 shrink-0">
-              책 먹는 편집자의 블로그
-            </h1>
-
-            <nav className="flex items-center gap-3 md:gap-8 md:ml-4 shrink-0">
+            {/* Navigation Block - Right */}
+            <nav className="flex-1 flex items-center justify-end px-4 md:px-8 gap-4 md:gap-8 overflow-x-auto no-scrollbar">
               <div
-                className="relative group"
+                className="relative group h-full flex items-center"
                 onMouseEnter={() => setIsHomeHovered(true)}
                 onMouseLeave={() => setIsHomeHovered(false)}
               >
@@ -94,8 +95,8 @@ function PortfolioContent() {
                     setCurrentTab("Home")
                     router.push("/")
                   }}
-                  className={`text-[13px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative 
-                    ${!scrolled || currentTab === "Home" ? "font-black text-stone-800" : "font-normal text-black"}
+                  className={`text-[12px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative 
+                    ${currentTab === "Home" ? "font-black text-stone-800" : "font-normal text-stone-500"}
                   `}
                 >
                   편집한 책
@@ -108,7 +109,7 @@ function PortfolioContent() {
                       initial={{ opacity: 0, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 5 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 min-w-[200px]"
+                      className="absolute top-full right-0 pt-2 z-50 min-w-[200px]"
                     >
                       <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-stone-100 p-2 flex flex-col gap-1">
                         {[
@@ -121,7 +122,6 @@ function PortfolioContent() {
                             onClick={() => {
                               setCurrentTab("Home")
                               setSelectedWorkType(item.value as any)
-                              // Clean up URL and state
                               router.push("/")
                               setIsHomeHovered(false)
                             }}
@@ -135,24 +135,26 @@ function PortfolioContent() {
                   )}
                 </AnimatePresence>
               </div>
+
               <button
                 onClick={() => {
                   setCurrentTab("Posting")
                   router.push("/")
                 }}
-                className={`text-[13px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative 
-                  ${!scrolled || currentTab === "Posting" ? "font-black text-stone-800" : "font-normal text-black"}
+                className={`text-[12px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative 
+                  ${currentTab === "Posting" ? "font-black text-stone-800" : "font-normal text-stone-500"}
                 `}
               >
                 포스팅
               </button>
+
               <button
                 onClick={() => {
                   setCurrentTab("Contact")
                   router.push("/")
                 }}
-                className={`text-[13px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative 
-                  ${!scrolled || currentTab === "Contact" ? "font-black text-stone-800" : "font-normal text-black"}
+                className={`text-[12px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative 
+                  ${currentTab === "Contact" ? "font-black text-stone-800" : "font-normal text-stone-500"}
                 `}
               >
                 소개·연락처
