@@ -1,6 +1,5 @@
-"use client"
-
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef, useState, useEffect } from "react"
 
 interface BookData {
     id: string
@@ -24,22 +23,26 @@ interface GridProps {
 }
 
 export function Grid({ books, onSelect }: GridProps) {
-    // scale increased to fit approx 7 books per row instead of 9
+    const [isMobile, setIsMobile] = useState(false)
     const SCALE = 1.15
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768)
+        checkMobile()
+        window.addEventListener('resize', checkMobile)
+        return () => window.removeEventListener('resize', checkMobile)
+    }, [])
+
+    if (isMobile) {
+        return <VaultSlider books={books} onSelect={onSelect} />
+    }
 
     return (
         <div className="w-full pt-0 pb-12 px-6">
-            {/* 
-                gap-x-6: Reduced by half for higher density
-                gap-y-10: Reduced by half for a tighter vertical packing
-            */}
             <div className="flex flex-wrap justify-start items-end gap-x-6 gap-y-10 w-full mx-auto">
                 {books.map((book) => {
-                    // Default if missing
                     const w_mm = book.width || 150
                     const h_mm = book.height || 220
-
-                    // Calculate display pixels
                     const w_px = w_mm * SCALE
                     const h_px = h_mm * SCALE
 
@@ -62,7 +65,6 @@ export function Grid({ books, onSelect }: GridProps) {
                                     height: h_px,
                                 }}
                             >
-                                {/* Image if available */}
                                 {book.image && (
                                     <img
                                         src={book.image}
@@ -70,15 +72,12 @@ export function Grid({ books, onSelect }: GridProps) {
                                         className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-[0.7]"
                                     />
                                 )}
-
                                 {!book.image && (
                                     <div className="p-4 h-full flex flex-col justify-between text-stone-900 bg-stone-50 transition-all duration-700 group-hover:brightness-[0.9]">
                                         <h3 className="font-bold text-sm leading-tight tracking-tight">{book.title}</h3>
                                         <p className="text-[10px] font-medium text-stone-400 uppercase tracking-widest">{book.author}</p>
                                     </div>
                                 )}
-
-                                {/* Fade In Hover Overlay with Explore Button Only */}
                                 <motion.div
                                     className="absolute inset-0 bg-stone-900/60 z-20 flex items-center justify-center p-6 overflow-hidden"
                                     initial={{ opacity: 0 }}
@@ -101,3 +100,110 @@ export function Grid({ books, onSelect }: GridProps) {
         </div>
     )
 }
+
+function VaultSlider({ books, onSelect }: GridProps) {
+    const containerRef = useRef<HTMLDivElement>(null)
+    const { scrollXProgress } = useScroll({
+        container: containerRef,
+    })
+
+    return (
+        <div className="relative w-full overflow-hidden pt-10 pb-20">
+            {/* Background "Dial" effect - subtle */}
+            <div className="absolute top-1/2 left-0 w-full h-[1px] bg-stone-100 -translate-y-1/2 pointer-events-none" />
+
+            <div
+                ref={containerRef}
+                className="flex items-end gap-0 overflow-x-auto snap-x snap-mandatory no-scrollbar px-[40vw]"
+                style={{ scrollPadding: "0 40vw" }}
+            >
+                {books.map((book, idx) => (
+                    <VaultItem
+                        key={book.id}
+                        book={book}
+                        onSelect={onSelect}
+                        containerRef={containerRef}
+                    />
+                ))}
+            </div>
+
+            {/* Helper label */}
+            <div className="text-center mt-8 px-10">
+                <p className="text-[12px] font-bold text-stone-400 uppercase tracking-[0.2em]">
+                    ← Slide to choose →
+                </p>
+            </div>
+        </div>
+    )
+}
+
+function VaultItem({ book, onSelect, containerRef }: { book: BookData, onSelect: any, containerRef: any }) {
+    const ref = useRef<HTMLDivElement>(null)
+    const { scrollXProgress } = useScroll({
+        container: containerRef,
+        target: ref,
+        offset: ["start end", "end start"]
+    })
+
+    // Scale and Opacity based on distance from center
+    // We want it to be 1.25 when in center, and 0.7 when on sides
+    // offset: ["start end", "end start"] means:
+    // 0: item's start is at container's end (just entering right)
+    // 0.5: item is in middle
+    // 1: item's end is at container's start (just leaving left)
+
+    const scale = useTransform(scrollXProgress, [0, 0.5, 1], [0.7, 1.2, 0.7])
+    const opacity = useTransform(scrollXProgress, [0, 0.3, 0.5, 0.7, 1], [0.3, 0.6, 1, 0.6, 0.3])
+    const rotateY = useTransform(scrollXProgress, [0, 0.5, 1], [45, 0, -45])
+    const zIndex = useTransform(scrollXProgress, [0, 0.5, 1], [1, 10, 1])
+
+    return (
+        <motion.div
+            ref={ref}
+            onClick={() => onSelect(book)}
+            style={{
+                scale,
+                opacity,
+                rotateY,
+                zIndex,
+                perspective: "1000px"
+            }}
+            className="flex-shrink-0 snap-center cursor-pointer py-10 px-4"
+        >
+            <div
+                className="relative bg-white shadow-2xl rounded-sm overflow-hidden"
+                style={{
+                    width: (book.width || 150) * 0.8,
+                    height: (book.height || 220) * 0.8
+                }}
+            >
+                {book.image ? (
+                    <img
+                        src={book.image}
+                        alt={book.title}
+                        className="w-full h-full object-cover"
+                    />
+                ) : (
+                    <div className="p-4 h-full flex flex-col justify-between bg-stone-50">
+                        <h3 className="font-bold text-xs">{book.title}</h3>
+                        <p className="text-[8px] text-stone-400 uppercase">{book.author}</p>
+                    </div>
+                )}
+            </div>
+
+            {/* Title appears below when centered */}
+            <motion.div
+                style={{ opacity: useTransform(scrollXProgress, [0.4, 0.5, 0.6], [0, 1, 0]) }}
+                className="absolute left-1/2 -translate-x-1/2 bottom-[-40px] w-[200px] text-center"
+            >
+                <h4 className="font-black text-[14px] text-stone-900 whitespace-nowrap overflow-hidden text-ellipsis">
+                    {book.title}
+                </h4>
+                <p className="text-[10px] text-stone-400 font-medium">
+                    {book.author}
+                </p>
+            </motion.div>
+        </motion.div>
+    )
+}
+

@@ -53,19 +53,7 @@ function PortfolioContent() {
     setActiveDropdown(activeDropdown === section ? null : section)
   }
 
-  // Floating Header Scroll Animations
-  const { scrollY } = useScroll()
-
-  // Maps scroll from 0-100 to background height and style
-  const headerBgHeight = useTransform(scrollY, [0, 80], ["36px", "60px"])
-  const headerBgOpacity = useTransform(scrollY, [0, 80], [1, 1])
-  const headerPaddingTop = useTransform(scrollY, [0, 80], ["48px", "12px"])
-
-  // Smooth out transitions
-  const smoothHeight = useSpring(headerBgHeight, { stiffness: 220, damping: 32 })
-  const smoothPaddingTop = useSpring(headerPaddingTop, { stiffness: 220, damping: 32 })
-
-  // Track scroll state for reactive UI changes (like font-weight)
+  // Floating Header Scroll Logic Removed
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
     const updateScroll = () => setScrolled(window.scrollY > 40)
@@ -77,13 +65,9 @@ function PortfolioContent() {
     <main className="flex min-h-screen flex-col bg-white text-stone-900 font-sans">
       {/* Sticky Container for Header Logic */}
       <div className="sticky top-0 z-[100] w-full">
-        {/* Animated Background that expands from the color bar */}
-        <motion.div
-          className="absolute inset-0 bg-[#BFD5F2] origin-top"
-          style={{
-            height: smoothHeight,
-            opacity: headerBgOpacity,
-          }}
+        {/* Static Background Color Bar */}
+        <div
+          className="absolute inset-0 bg-[#BFD5F2] origin-top h-[60px]"
         />
 
         {/* Paper Texture Overlay on the background */}
@@ -91,9 +75,8 @@ function PortfolioContent() {
           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}>
         </div>
 
-        <motion.header
-          className="relative w-full px-4 md:px-8 pb-4 flex flex-col items-start gap-4"
-          style={{ paddingTop: smoothPaddingTop }}
+        <header
+          className="relative w-full px-4 md:px-8 pb-4 pt-4 flex flex-col items-start gap-4"
         >
           <div className="flex flex-nowrap items-center gap-4 md:gap-10 w-full relative overflow-x-auto no-scrollbar">
             <h1 className="font-black text-[15px] md:text-[22px] whitespace-nowrap tracking-tight text-stone-900 shrink-0">
@@ -176,7 +159,7 @@ function PortfolioContent() {
               </button>
             </nav>
           </div>
-        </motion.header>
+        </header>
       </div>
 
       <div className="w-full px-8">
