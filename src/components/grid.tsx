@@ -25,6 +25,8 @@ interface GridProps {
 export function Grid({ books, onSelect }: GridProps) {
     const [isMobile, setIsMobile] = useState(false)
     const SCALE = 1.15
+    const FEATURE_SCALE_DESKTOP = 2.5
+    const FEATURE_SCALE_MOBILE = 1.8
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768)
@@ -33,11 +35,67 @@ export function Grid({ books, onSelect }: GridProps) {
         return () => window.removeEventListener('resize', checkMobile)
     }, [])
 
+    if (!books || books.length === 0) return null
+
+    const featuredBook = books[0]
+    const remainingBooks = books.slice(1)
+
+    // Helper components for featured book
+    const FeaturedSection = () => {
+        const w = featuredBook.width || 150
+        const h = featuredBook.height || 220
+        const scale = isMobile ? FEATURE_SCALE_MOBILE : FEATURE_SCALE_DESKTOP
+        const w_px = w * scale
+        const h_px = h * scale
+
+        return (
+            <div className="w-full flex flex-col items-center mb-24 md:mb-32">
+                <motion.div
+                    onClick={() => onSelect(featuredBook)}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    whileHover={{ y: -10 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="cursor-pointer group flex flex-col items-center"
+                >
+                    <div
+                        className="relative bg-white shadow-2xl rounded-sm overflow-hidden mb-12"
+                        style={{ width: w_px, height: h_px }}
+                    >
+                        {featuredBook.image ? (
+                            <img
+                                src={featuredBook.image}
+                                alt={featuredBook.title}
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                        ) : (
+                            <div className="p-8 h-full flex flex-col justify-between bg-stone-50">
+                                <h3 className="font-bold text-2xl leading-tight text-stone-900">{featuredBook.title}</h3>
+                                <p className="text-sm font-medium text-stone-400 uppercase tracking-widest">{featuredBook.author}</p>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Featured Book Title Area - Optionally show if desired, but image focus is better based on reference */}
+                    {/* <div className="text-center mt-6">
+                        <h2 className="text-xl md:text-2xl font-black text-stone-900 mb-2">{featuredBook.title}</h2>
+                        <p className="text-stone-500 font-bold">{featuredBook.author}</p>
+                    </div> */}
+                </motion.div>
+
+                {/* Visual Connector or Spacing */}
+                <div className="w-full h-px bg-stone-100 max-w-4xl mt-12 mb-12 opacity-50" />
+            </div>
+        )
+    }
+
     if (isMobile) {
         return (
-            <div className="w-full bg-white pt-4 pb-20 px-4">
-                <div className="grid grid-cols-2 gap-4 w-full bg-white">
-                    {books.map((book) => {
+            <div className="w-full bg-white pt-12 pb-20 px-4">
+                <FeaturedSection />
+                <div className="grid grid-cols-2 gap-x-4 gap-y-12 w-full bg-white">
+                    {remainingBooks.map((book) => {
+                        const ratio = (book.height || 220) / (book.width || 150)
                         return (
                             <motion.div
                                 key={book.id}
@@ -45,23 +103,24 @@ export function Grid({ books, onSelect }: GridProps) {
                                 initial={{ opacity: 0, y: 10 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="flex flex-col items-stretch select-none"
+                                className="flex flex-col items-center select-none"
                             >
-                                <div className="bg-[#BFD5F2] py-6 px-3 flex flex-col items-center justify-center h-full aspect-[1/1.45] rounded-sm">
-                                    <div className="relative w-[92%] aspect-[1/1.4] bg-white shadow-2xl rounded-sm overflow-hidden border border-white/20">
-                                        {book.image ? (
-                                            <img
-                                                src={book.image}
-                                                alt={book.title}
-                                                className="w-full h-full object-cover"
-                                            />
-                                        ) : (
-                                            <div className="p-3 h-full flex flex-col justify-between bg-white text-stone-900">
-                                                <h3 className="font-bold text-[10px] leading-tight tracking-tight">{book.title}</h3>
-                                                <p className="text-[8px] text-stone-400 font-medium uppercase tracking-widest">{book.author}</p>
-                                            </div>
-                                        )}
-                                    </div>
+                                <div
+                                    className="relative w-full bg-white shadow-lg rounded-sm overflow-hidden border border-stone-100"
+                                    style={{ aspectRatio: `1 / ${ratio}` }}
+                                >
+                                    {book.image ? (
+                                        <img
+                                            src={book.image}
+                                            alt={book.title}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    ) : (
+                                        <div className="p-3 h-full flex flex-col justify-between bg-white text-stone-900">
+                                            <h3 className="font-bold text-[10px] leading-tight tracking-tight">{book.title}</h3>
+                                            <p className="text-[8px] text-stone-400 font-medium uppercase tracking-widest">{book.author}</p>
+                                        </div>
+                                    )}
                                 </div>
                             </motion.div>
                         )
@@ -72,9 +131,10 @@ export function Grid({ books, onSelect }: GridProps) {
     }
 
     return (
-        <div className="w-full pt-0 pb-12 px-6">
-            <div className="flex flex-wrap justify-start items-end gap-x-6 gap-y-10 w-full mx-auto">
-                {books.map((book) => {
+        <div className="w-full pt-16 pb-24 px-6 max-w-7xl mx-auto">
+            <FeaturedSection />
+            <div className="flex flex-wrap justify-center items-end gap-x-10 gap-y-16 w-full mx-auto">
+                {remainingBooks.map((book) => {
                     const w_mm = book.width || 150
                     const h_mm = book.height || 220
                     const w_px = w_mm * SCALE
