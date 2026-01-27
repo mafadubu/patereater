@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import Image from "next/image"
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion"
@@ -11,7 +11,7 @@ import { BookDetailView } from "@/components/book-detail-view"
 import books from "@/data/books.json"
 import posts from "@/data/posts.json"
 
-export default function Home() {
+function PortfolioContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [selectedBook, setSelectedBook] = useState<any>(null)
@@ -368,5 +368,13 @@ export default function Home() {
         </AnimatePresence>
       </section>
     </main >
+  )
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white" />}>
+      <PortfolioContent />
+    </Suspense>
   )
 }
