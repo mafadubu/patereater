@@ -15,10 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://gjgygrbb.vercel.app"),
   title: "책 먹는 편집자 | 포트폴리오",
-  description: "IT·실용 편집자 나준섭의 포트폴리오 사이트입니다.",
+  description: "IT·실용 편집자 책 먹는 편집자의 포트폴리오 사이트입니다.",
   openGraph: {
     title: "책 먹는 편집자 | 포트폴리오",
-    description: "IT·실용 편집자 나준섭의 포트폴리오 사이트입니다.",
+    description: "IT·실용 편집자 책 먹는 편집자의 포트폴리오 사이트입니다.",
     url: "https://gjgygrbb.vercel.app",
     siteName: "책 먹는 편집자",
     images: [
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "책 먹는 편집자 | 포트폴리오",
-    description: "IT·실용 편집자 나준섭의 포트폴리오 사이트입니다.",
+    description: "IT·실용 편집자 책 먹는 편집자의 포트폴리오 사이트입니다.",
     images: ["https://gjgygrbb.vercel.app/images/uploaded_media_3_1769245889002.png"],
   },
 };
