@@ -92,15 +92,15 @@ function PortfolioContent() {
         </div>
 
         <motion.header
-          className="relative w-full px-8 pb-4 flex flex-col items-start gap-4"
+          className="relative w-full px-4 md:px-8 pb-4 flex flex-col items-start gap-4"
           style={{ paddingTop: smoothPaddingTop }}
         >
-          <div className="flex flex-wrap items-baseline gap-10 w-full relative">
-            <h1 className="font-black text-[22px] tracking-tight text-stone-900">
+          <div className="flex flex-nowrap items-baseline gap-4 md:gap-10 w-full relative overflow-x-auto no-scrollbar">
+            <h1 className="font-black text-[15px] md:text-[22px] whitespace-nowrap tracking-tight text-stone-900 shrink-0">
               책 먹는 편집자의 블로그
             </h1>
 
-            <nav className="flex items-center gap-8 md:ml-4">
+            <nav className="flex items-center gap-3 md:gap-8 md:ml-4 shrink-0">
               <div
                 className="relative group"
                 onMouseEnter={() => setIsHomeHovered(true)}
@@ -111,7 +111,7 @@ function PortfolioContent() {
                     setCurrentTab("Home")
                     router.push("/")
                   }}
-                  className={`text-[17px] transition-all cursor-pointer pb-1 relative 
+                  className={`text-[13px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer pb-1 relative 
                     ${!scrolled || currentTab === "Home" ? "font-black text-stone-800" : "font-normal text-black"}
                   `}
                 >
@@ -157,7 +157,7 @@ function PortfolioContent() {
                   setCurrentTab("Posting")
                   router.push("/")
                 }}
-                className={`text-[17px] transition-all cursor-pointer pb-1 relative 
+                className={`text-[13px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer pb-1 relative 
                   ${!scrolled || currentTab === "Posting" ? "font-black text-stone-800" : "font-normal text-black"}
                 `}
               >
@@ -168,7 +168,7 @@ function PortfolioContent() {
                   setCurrentTab("Contact")
                   router.push("/")
                 }}
-                className={`text-[17px] transition-all cursor-pointer pb-1 relative 
+                className={`text-[13px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer pb-1 relative 
                   ${!scrolled || currentTab === "Contact" ? "font-black text-stone-800" : "font-normal text-black"}
                 `}
               >
