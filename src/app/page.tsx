@@ -89,10 +89,14 @@ function PortfolioContent() {
               >
                 <button
                   onClick={() => {
-                    setCurrentTab("Home")
-                    router.push("/")
+                    if (window.innerWidth < 768) {
+                      setIsHomeHovered(!isHomeHovered)
+                    } else {
+                      setCurrentTab("Home")
+                      router.push("/")
+                    }
                   }}
-                  className={`text-[12px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative py-2
+                  className={`text-[12px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative py-2 px-1
                     ${currentTab === "Home" ? "font-black text-stone-800" : "font-normal text-stone-500 hover:text-stone-900"}
                   `}
                 >
@@ -102,33 +106,40 @@ function PortfolioContent() {
                 {/* Submenu Dropdown */}
                 <AnimatePresence>
                   {isHomeHovered && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 0 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 5 }}
-                      className="absolute top-full left-0 pt-0 z-50 min-w-[200px]"
-                    >
-                      <div className="bg-white shadow-2xl border-x border-b border-stone-200 flex flex-col overflow-hidden">
-                        {[
-                          { label: "전체", value: "All" },
-                          { label: "기획·제작", value: "기획·제작" },
-                          { label: "제작", value: "제작" }
-                        ].map((item) => (
-                          <button
-                            key={item.value}
-                            onClick={() => {
-                              setCurrentTab("Home")
-                              setSelectedWorkType(item.value as any)
-                              router.push("/")
-                              setIsHomeHovered(false)
-                            }}
-                            className={`px-4 py-3 text-left text-[13px] md:text-[14px] font-bold transition-all border-b border-stone-50 last:border-b-0 ${selectedWorkType === item.value && currentTab === "Home" ? "bg-stone-50 text-stone-900" : "text-stone-500 hover:bg-stone-50 hover:text-stone-900"}`}
-                          >
-                            {item.label}
-                          </button>
-                        ))}
-                      </div>
-                    </motion.div>
+                    <>
+                      {/* Click-away overlay for mobile */}
+                      <div
+                        className="fixed inset-0 z-40 md:hidden"
+                        onClick={() => setIsHomeHovered(false)}
+                      />
+                      <motion.div
+                        initial={{ opacity: 0, y: 0 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 5 }}
+                        className="absolute top-full left-0 pt-0 z-50 min-w-[200px]"
+                      >
+                        <div className="bg-white shadow-2xl border border-stone-200 flex flex-col overflow-hidden rounded-md mt-1">
+                          {[
+                            { label: "전체", value: "All" },
+                            { label: "기획·제작", value: "기획·제작" },
+                            { label: "제작", value: "제작" }
+                          ].map((item) => (
+                            <button
+                              key={item.value}
+                              onClick={() => {
+                                setCurrentTab("Home")
+                                setSelectedWorkType(item.value as any)
+                                router.push("/")
+                                setIsHomeHovered(false)
+                              }}
+                              className={`px-4 py-3 text-left text-[14px] font-bold transition-all border-b border-stone-50 last:border-b-0 ${selectedWorkType === item.value && currentTab === "Home" ? "bg-stone-50 text-stone-900" : "text-stone-500 hover:bg-stone-50 hover:text-stone-900"}`}
+                            >
+                              {item.label}
+                            </button>
+                          ))}
+                        </div>
+                      </motion.div>
+                    </>
                   )}
                 </AnimatePresence>
               </div>

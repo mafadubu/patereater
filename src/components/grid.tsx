@@ -35,8 +35,8 @@ export function Grid({ books, onSelect }: GridProps) {
 
     if (isMobile) {
         return (
-            <div className="w-full bg-white pt-4 pb-4 px-4">
-                <div className="grid grid-cols-2 gap-4 w-full">
+            <div className="w-full bg-white pt-6 pb-20 px-4">
+                <div className="grid grid-cols-2 gap-4 w-full bg-white">
                     {books.map((book) => {
                         return (
                             <motion.div
