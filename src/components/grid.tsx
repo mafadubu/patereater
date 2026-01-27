@@ -47,8 +47,8 @@ export function Grid({ books, onSelect }: GridProps) {
                                 viewport={{ once: true }}
                                 className="flex flex-col items-stretch select-none"
                             >
-                                <div className="bg-[#BFD5F2] py-8 px-5 flex flex-col items-center justify-center h-full aspect-[1/1.45] rounded-sm">
-                                    <div className="relative w-[85%] aspect-[1/1.4] bg-white shadow-2xl rounded-sm overflow-hidden border border-white/20">
+                                <div className="bg-[#BFD5F2] py-6 px-3 flex flex-col items-center justify-center h-full aspect-[1/1.45] rounded-sm">
+                                    <div className="relative w-[92%] aspect-[1/1.4] bg-white shadow-2xl rounded-sm overflow-hidden border border-white/20">
                                         {book.image ? (
                                             <img
                                                 src={book.image}

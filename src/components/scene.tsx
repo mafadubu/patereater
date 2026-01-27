@@ -108,9 +108,9 @@ export function Scene({ color = "#e11d48", image, backImage, spineImage, dimensi
                             <div className="absolute w-44 h-px bg-stone-300 transform translate-y-16 opacity-30" />
 
                             {/* Hand Icon - Driven by React State for perfect sync */}
-                            <div
-                                style={{ transform: `translate(${hintX}px, 64px) rotate(${hintX * 0.1}deg)` }}
-                                className="transition-transform duration-75 ease-linear"
+                            <motion.div
+                                style={{ x: hintX, y: 64, rotate: hintX * 0.1 }}
+                                className="z-20"
                             >
                                 <div className="bg-white/95 backdrop-blur-md p-4 rounded-full shadow-2xl border border-white">
                                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-stone-900">
@@ -120,7 +120,7 @@ export function Scene({ color = "#e11d48", image, backImage, spineImage, dimensi
                                         <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
                                     </svg>
                                 </div>
-                            </div>
+                            </motion.div>
                         </div>
                     </motion.div>
                 )}
