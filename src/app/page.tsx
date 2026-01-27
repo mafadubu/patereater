@@ -83,8 +83,8 @@ function PortfolioContent() {
               </h1>
             </div>
 
-            {/* Navigation Block - Right */}
-            <nav className="flex-1 flex items-center justify-end px-4 md:px-8 gap-4 md:gap-8 overflow-x-auto no-scrollbar">
+            {/* Navigation Block */}
+            <nav className="flex-1 flex items-center justify-start px-4 md:px-8 gap-4 md:gap-8 overflow-x-auto no-scrollbar">
               <div
                 className="relative group h-full flex items-center"
                 onMouseEnter={() => setIsHomeHovered(true)}
@@ -164,154 +164,7 @@ function PortfolioContent() {
         </header>
       </div>
 
-      <div className="w-full px-8">
-        {/* Notion-Style Filter Dashboard - Only show when no book is selected */}
-        {currentTab === "Home" && !selectedBook && (
-          <div className="flex flex-nowrap items-center gap-2 text-[13px] w-full pt-1 pb-1 relative border-t border-black/5 overflow-x-auto no-scrollbar">
-            {/* Click-away backdrop */}
-            {activeDropdown && (
-              <div
-                className="fixed inset-0 z-40 cursor-default"
-                onClick={() => setActiveDropdown(null)}
-              />
-            )}
-            <div className="text-stone-400 font-semibold mr-4 flex items-center gap-2 shrink-0">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m21 16-4 4-4-4" /><path d="M17 20V4" /><path d="m3 8 4-4 4 4" /><path d="M7 4v16" /></svg>
-              Sort
-            </div>
-
-            {/* 분야 (카테고리) */}
-            <div className="relative shrink-0">
-              <button
-                onClick={() => toggleDropdown("카테고리")}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-stone-50 transition-colors border border-stone-100 whitespace-nowrap"
-              >
-                <span className="text-stone-400 font-medium">분야</span>
-                <span className="font-bold text-stone-700">{selectedCategory}</span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={`mt-0.5 transition-transform ${activeDropdown === "카테고리" ? "rotate-180" : ""}`}><path d="m6 9 6 6 6-6" /></svg>
-              </button>
-              <AnimatePresence>
-                {activeDropdown === "카테고리" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 4 }}
-                    className="absolute left-0 mt-2 w-48 bg-white border border-stone-200 rounded-lg shadow-xl z-50 p-1.5"
-                  >
-                    <div className="flex flex-col gap-0.5">
-                      {["All", "AI", "디자인", "취미", "오피스"].map((opt) => (
-                        <button
-                          key={opt}
-                          onClick={() => {
-                            setSelectedCategory(opt)
-                            setActiveDropdown(null)
-                          }}
-                          className={`px-3 py-1.5 text-left rounded-md hover:bg-stone-100 transition-colors font-medium ${selectedCategory === opt ? "text-[#BFD5F2] font-bold" : "text-stone-700"}`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* 연도 */}
-            <div className="relative shrink-0">
-              <button
-                onClick={() => toggleDropdown("연도")}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-stone-50 transition-colors border border-stone-100 whitespace-nowrap"
-              >
-                <span className="text-stone-400 font-medium">연도</span>
-                <span className="font-bold text-stone-700">{selectedYear}</span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={`mt-0.5 transition-transform ${activeDropdown === "연도" ? "rotate-180" : ""}`}><path d="m6 9 6 6 6-6" /></svg>
-              </button>
-              <AnimatePresence>
-                {activeDropdown === "연도" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 4 }}
-                    className="absolute left-0 mt-2 w-48 bg-white border border-stone-200 rounded-lg shadow-xl z-50 p-1.5"
-                  >
-                    <div className="flex flex-col gap-0.5">
-                      {["All", "2026", "2025", "2024", "2023"].map((opt) => (
-                        <button
-                          key={opt}
-                          onClick={() => {
-                            setSelectedYear(opt)
-                            setActiveDropdown(null)
-                          }}
-                          className={`px-3 py-1.5 text-left rounded-md hover:bg-stone-100 transition-colors font-medium ${selectedYear === opt ? "text-[#7DAEFF] font-bold" : "text-stone-700"}`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* 출판사 */}
-            <div className="relative shrink-0">
-              <button
-                onClick={() => toggleDropdown("출판사")}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-md hover:bg-stone-50 transition-colors border border-stone-100 whitespace-nowrap"
-              >
-                <span className="text-stone-400 font-medium">출판사</span>
-                <span className="font-bold text-stone-700">{selectedPublisher}</span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className={`mt-0.5 transition-transform ${activeDropdown === "출판사" ? "rotate-180" : ""}`}><path d="m6 9 6 6 6-6" /></svg>
-              </button>
-              <AnimatePresence>
-                {activeDropdown === "출판사" && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 4 }}
-                    className="absolute left-0 mt-2 w-48 bg-white border border-stone-200 rounded-lg shadow-xl z-50 p-1.5"
-                  >
-                    <div className="flex flex-col gap-0.5">
-                      {["All", "제이펍"].map((opt) => (
-                        <button
-                          key={opt}
-                          onClick={() => {
-                            setSelectedPublisher(opt)
-                            setActiveDropdown(null)
-                          }}
-                          className={`px-3 py-1.5 text-left rounded-md hover:bg-stone-100 transition-colors font-medium ${selectedPublisher === opt ? "text-[#7DAEFF] font-bold" : "text-stone-700"}`}
-                        >
-                          {opt}
-                        </button>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            <div className="flex-1" />
-          </div>
-        )}
-
-        {currentTab === "Posting" && !selectedBook && (
-          <div className="flex flex-nowrap items-center gap-3 text-[13px] w-full pt-1 overflow-x-auto no-scrollbar">
-            <div className="text-stone-400 font-semibold mr-4 flex items-center gap-2 shrink-0">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m21 16-4 4-4-4" /><path d="M17 20V4" /><path d="m3 8 4-4 4 4" /><path d="M7 4v16" /></svg>
-              Sort
-            </div>
-
-            <button className="text-stone-700 font-bold px-3 py-1.5 rounded-md border border-stone-100 bg-stone-50 transition-colors shrink-0 whitespace-nowrap">전체</button>
-            <button className="text-stone-400 font-semibold px-3 py-1.5 rounded-md border border-stone-100 hover:bg-stone-50 transition-colors shrink-0 whitespace-nowrap">월간 표1</button>
-            <button className="text-stone-400 font-semibold px-3 py-1.5 rounded-md border border-stone-100 hover:bg-stone-50 transition-colors shrink-0 whitespace-nowrap">편집</button>
-            <button className="text-stone-400 font-semibold px-3 py-1.5 rounded-md border border-stone-100 hover:bg-stone-50 transition-colors shrink-0 whitespace-nowrap">책</button>
-            <button className="text-stone-400 font-semibold px-3 py-1.5 rounded-md border border-stone-100 hover:bg-stone-50 transition-colors shrink-0 whitespace-nowrap">음악</button>
-
-            <div className="flex-1" />
-          </div>
-        )}
-      </div>
+      <div className="w-full h-4" />
 
       <section className="w-full flex-1 overflow-hidden">
         <AnimatePresence mode="wait">
