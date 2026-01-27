@@ -13,17 +13,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://patereater.vercel.app"),
+  metadataBase: new URL("https://gjgygrbb.vercel.app"),
   title: "책 먹는 편집자 | 포트폴리오",
   description: "IT·실용 편집자 나준섭의 포트폴리오 사이트입니다.",
   openGraph: {
     title: "책 먹는 편집자 | 포트폴리오",
     description: "IT·실용 편집자 나준섭의 포트폴리오 사이트입니다.",
-    url: "https://patereater.vercel.app",
+    url: "https://gjgygrbb.vercel.app",
     siteName: "책 먹는 편집자",
     images: [
       {
-        url: "https://patereater.vercel.app/images/uploaded_media_3_1769245889002.png",
+        url: "https://gjgygrbb.vercel.app/images/uploaded_media_3_1769245889002.png",
         width: 1200,
         height: 630,
         alt: "책 먹는 편집자 프로필 사진",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "책 먹는 편집자 | 포트폴리오",
     description: "IT·실용 편집자 나준섭의 포트폴리오 사이트입니다.",
-    images: ["https://patereater.vercel.app/images/uploaded_media_3_1769245889002.png"],
+    images: ["https://gjgygrbb.vercel.app/images/uploaded_media_3_1769245889002.png"],
   },
 };
 
