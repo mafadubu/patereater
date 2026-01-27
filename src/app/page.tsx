@@ -68,7 +68,7 @@ function PortfolioContent() {
         <header className="relative w-full border-b border-black/10">
           <div className="flex items-stretch w-full h-[52px] md:h-[72px]">
             {/* Title Block - Left */}
-            <div className="flex items-center px-4 md:px-8 border-r border-black/10">
+            <div className="flex items-center px-4 md:px-8 h-full">
               <h1
                 className="font-black text-[14px] md:text-[22px] whitespace-nowrap tracking-tight text-stone-900 cursor-pointer"
                 onClick={() => {
@@ -81,7 +81,7 @@ function PortfolioContent() {
             </div>
 
             {/* Navigation Block */}
-            <nav className="flex-1 flex items-center justify-start px-4 md:px-8 gap-4 md:gap-8 overflow-x-auto no-scrollbar">
+            <nav className="flex items-center justify-start px-4 md:px-8 gap-4 md:gap-10 min-w-0">
               <div
                 className="relative group h-full flex items-center"
                 onMouseEnter={() => setIsHomeHovered(true)}

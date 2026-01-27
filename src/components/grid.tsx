@@ -35,8 +35,8 @@ export function Grid({ books, onSelect }: GridProps) {
 
     if (isMobile) {
         return (
-            <div className="w-full bg-stone-100 pt-1 pb-1 px-1">
-                <div className="grid grid-cols-2 gap-1 w-full bg-white">
+            <div className="w-full bg-white pt-4 pb-4 px-4">
+                <div className="grid grid-cols-2 gap-4 w-full">
                     {books.map((book) => {
                         return (
                             <motion.div
@@ -47,8 +47,8 @@ export function Grid({ books, onSelect }: GridProps) {
                                 viewport={{ once: true }}
                                 className="flex flex-col items-stretch select-none"
                             >
-                                <div className="bg-[#BFD5F2] py-8 px-4 flex flex-col items-center h-full min-h-[280px]">
-                                    <div className="relative w-[75%] aspect-[1/1.4] bg-white shadow-xl rounded-sm overflow-hidden">
+                                <div className="bg-[#BFD5F2] py-14 px-6 flex flex-col items-center h-full min-h-[320px]">
+                                    <div className="relative w-[60%] aspect-[1/1.4] bg-white shadow-2xl rounded-sm overflow-hidden border border-white/20">
                                         {book.image ? (
                                             <img
                                                 src={book.image}
@@ -62,11 +62,11 @@ export function Grid({ books, onSelect }: GridProps) {
                                             </div>
                                         )}
                                     </div>
-                                    <div className="mt-6 text-center w-full px-1">
-                                        <h4 className="font-black text-[12px] text-stone-900 line-clamp-2 leading-tight">
+                                    <div className="mt-8 text-center w-full px-1">
+                                        <h4 className="font-black text-[11px] text-stone-900 line-clamp-2 leading-tight tracking-tight">
                                             {book.title}
                                         </h4>
-                                        <p className="text-[10px] text-stone-700/60 font-bold mt-1">
+                                        <p className="text-[9px] text-stone-700/50 font-bold mt-1.5">
                                             {book.author}
                                         </p>
                                     </div>

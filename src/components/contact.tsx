@@ -10,7 +10,7 @@ export function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="w-full max-w-4xl pt-24 pb-20 px-8 lg:px-12 flex justify-center"
+            className="w-full max-w-4xl pt-4 md:pt-12 pb-20 px-4 md:px-8 flex justify-center mx-auto"
         >
             {/* Minimalist Profile Card inspired by reference image */}
             <section className="w-full max-w-full">
