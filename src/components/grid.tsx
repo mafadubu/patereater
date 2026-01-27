@@ -40,8 +40,8 @@ export function Grid({ books, onSelect }: GridProps) {
     const featuredBook = books[0]
     const remainingBooks = books.slice(1)
 
-    // Helper components for featured book
-    const FeaturedSection = () => {
+    // Helper render function for featured book
+    const renderFeaturedSection = () => {
         const w = featuredBook.width || 150
         const h = featuredBook.height || 220
         const scale = isMobile ? FEATURE_SCALE_MOBILE : FEATURE_SCALE_DESKTOP
@@ -92,7 +92,7 @@ export function Grid({ books, onSelect }: GridProps) {
     if (isMobile) {
         return (
             <div className="w-full bg-white pt-12 pb-20 px-4">
-                <FeaturedSection />
+                {renderFeaturedSection()}
                 <div className="grid grid-cols-2 gap-x-4 gap-y-12 w-full bg-white">
                     {remainingBooks.map((book) => {
                         const ratio = (book.height || 220) / (book.width || 150)
@@ -132,7 +132,7 @@ export function Grid({ books, onSelect }: GridProps) {
 
     return (
         <div className="w-full pt-16 pb-24 px-6 max-w-7xl mx-auto">
-            <FeaturedSection />
+            {renderFeaturedSection()}
             <div className="flex flex-wrap justify-center items-end gap-x-10 gap-y-16 w-full mx-auto">
                 {remainingBooks.map((book) => {
                     const w_mm = book.width || 150
