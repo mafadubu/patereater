@@ -35,7 +35,7 @@ export function Grid({ books, onSelect }: GridProps) {
 
     if (isMobile) {
         return (
-            <div className="w-full bg-white pt-6 pb-20 px-4">
+            <div className="w-full bg-white pt-4 pb-20 px-4">
                 <div className="grid grid-cols-2 gap-4 w-full bg-white">
                     {books.map((book) => {
                         return (
@@ -47,8 +47,8 @@ export function Grid({ books, onSelect }: GridProps) {
                                 viewport={{ once: true }}
                                 className="flex flex-col items-stretch select-none"
                             >
-                                <div className="bg-[#BFD5F2] py-14 px-6 flex flex-col items-center h-full min-h-[320px]">
-                                    <div className="relative w-[60%] aspect-[1/1.4] bg-white shadow-2xl rounded-sm overflow-hidden border border-white/20">
+                                <div className="bg-[#BFD5F2] py-8 px-5 flex flex-col items-center justify-center h-full aspect-[1/1.45] rounded-sm">
+                                    <div className="relative w-[85%] aspect-[1/1.4] bg-white shadow-2xl rounded-sm overflow-hidden border border-white/20">
                                         {book.image ? (
                                             <img
                                                 src={book.image}
@@ -61,14 +61,6 @@ export function Grid({ books, onSelect }: GridProps) {
                                                 <p className="text-[8px] text-stone-400 font-medium uppercase tracking-widest">{book.author}</p>
                                             </div>
                                         )}
-                                    </div>
-                                    <div className="mt-8 text-center w-full px-1">
-                                        <h4 className="font-black text-[11px] text-stone-900 line-clamp-2 leading-tight tracking-tight">
-                                            {book.title}
-                                        </h4>
-                                        <p className="text-[9px] text-stone-700/50 font-bold mt-1.5">
-                                            {book.author}
-                                        </p>
                                     </div>
                                 </div>
                             </motion.div>
