@@ -35,8 +35,8 @@ export function Grid({ books, onSelect }: GridProps) {
 
     if (isMobile) {
         return (
-            <div className="w-full bg-[#BFD5F2] pt-6 pb-12 px-4 min-h-screen">
-                <div className="grid grid-cols-2 gap-x-4 gap-y-10 w-full">
+            <div className="w-full bg-stone-100 pt-1 pb-1 px-1">
+                <div className="grid grid-cols-2 gap-1 w-full bg-white">
                     {books.map((book) => {
                         return (
                             <motion.div
@@ -45,29 +45,31 @@ export function Grid({ books, onSelect }: GridProps) {
                                 initial={{ opacity: 0, y: 10 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="flex flex-col items-center select-none"
+                                className="flex flex-col items-stretch select-none"
                             >
-                                <div className="relative w-full aspect-[1/1.4] bg-white shadow-xl rounded-sm overflow-hidden">
-                                    {book.image ? (
-                                        <img
-                                            src={book.image}
-                                            alt={book.title}
-                                            className="w-full h-full object-cover"
-                                        />
-                                    ) : (
-                                        <div className="p-3 h-full flex flex-col justify-between bg-white text-stone-900">
-                                            <h3 className="font-bold text-[11px] leading-tight tracking-tight">{book.title}</h3>
-                                            <p className="text-[9px] text-stone-400 font-medium uppercase tracking-widest">{book.author}</p>
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="mt-3 text-center w-full px-1">
-                                    <h4 className="font-black text-[13px] text-stone-900 line-clamp-1">
-                                        {book.title}
-                                    </h4>
-                                    <p className="text-[10px] text-stone-700/60 font-bold mt-0.5">
-                                        {book.author}
-                                    </p>
+                                <div className="bg-[#BFD5F2] py-8 px-4 flex flex-col items-center h-full min-h-[280px]">
+                                    <div className="relative w-[75%] aspect-[1/1.4] bg-white shadow-xl rounded-sm overflow-hidden">
+                                        {book.image ? (
+                                            <img
+                                                src={book.image}
+                                                alt={book.title}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        ) : (
+                                            <div className="p-3 h-full flex flex-col justify-between bg-white text-stone-900">
+                                                <h3 className="font-bold text-[10px] leading-tight tracking-tight">{book.title}</h3>
+                                                <p className="text-[8px] text-stone-400 font-medium uppercase tracking-widest">{book.author}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="mt-6 text-center w-full px-1">
+                                        <h4 className="font-black text-[12px] text-stone-900 line-clamp-2 leading-tight">
+                                            {book.title}
+                                        </h4>
+                                        <p className="text-[10px] text-stone-700/60 font-bold mt-1">
+                                            {book.author}
+                                        </p>
+                                    </div>
                                 </div>
                             </motion.div>
                         )

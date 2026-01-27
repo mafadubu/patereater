@@ -64,12 +64,9 @@ function PortfolioContent() {
   return (
     <main className="flex min-h-screen flex-col bg-white text-stone-900 font-sans">
       {/* Sticky Container for Header Logic */}
-      <div className="sticky top-0 z-[100] w-full bg-white">
-        {/* Color Bar on Top */}
-        <div className="w-full h-8 bg-[#BFD5F2] border-b border-black/5" />
-
+      <div className="sticky top-0 z-[100] w-full bg-white/95 backdrop-blur-sm">
         <header className="relative w-full border-b border-black/10">
-          <div className="flex items-stretch w-full h-12 md:h-16">
+          <div className="flex items-stretch w-full h-[52px] md:h-[72px]">
             {/* Title Block - Left */}
             <div className="flex items-center px-4 md:px-8 border-r border-black/10">
               <h1
@@ -95,8 +92,8 @@ function PortfolioContent() {
                     setCurrentTab("Home")
                     router.push("/")
                   }}
-                  className={`text-[12px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative 
-                    ${currentTab === "Home" ? "font-black text-stone-800" : "font-normal text-stone-500"}
+                  className={`text-[12px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative py-2
+                    ${currentTab === "Home" ? "font-black text-stone-800" : "font-normal text-stone-500 hover:text-stone-900"}
                   `}
                 >
                   편집한 책
@@ -106,12 +103,12 @@ function PortfolioContent() {
                 <AnimatePresence>
                   {isHomeHovered && (
                     <motion.div
-                      initial={{ opacity: 0, y: 5 }}
+                      initial={{ opacity: 0, y: 0 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 5 }}
-                      className="absolute top-full right-0 pt-2 z-50 min-w-[200px]"
+                      className="absolute top-full left-0 pt-0 z-50 min-w-[200px]"
                     >
-                      <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-stone-100 p-2 flex flex-col gap-1">
+                      <div className="bg-white shadow-2xl border-x border-b border-stone-200 flex flex-col overflow-hidden">
                         {[
                           { label: "전체", value: "All" },
                           { label: "기획·제작", value: "기획·제작" },
@@ -125,7 +122,7 @@ function PortfolioContent() {
                               router.push("/")
                               setIsHomeHovered(false)
                             }}
-                            className={`px-4 py-2.5 text-center text-[14px] font-bold rounded-lg transition-all ${selectedWorkType === item.value && currentTab === "Home" ? "bg-[#BFD5F2]/10 text-[#7DAEFF]" : "text-stone-500 hover:bg-stone-50 hover:text-stone-900"}`}
+                            className={`px-4 py-3 text-left text-[13px] md:text-[14px] font-bold transition-all border-b border-stone-50 last:border-b-0 ${selectedWorkType === item.value && currentTab === "Home" ? "bg-stone-50 text-stone-900" : "text-stone-500 hover:bg-stone-50 hover:text-stone-900"}`}
                           >
                             {item.label}
                           </button>
@@ -141,8 +138,8 @@ function PortfolioContent() {
                   setCurrentTab("Posting")
                   router.push("/")
                 }}
-                className={`text-[12px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative 
-                  ${currentTab === "Posting" ? "font-black text-stone-800" : "font-normal text-stone-500"}
+                className={`text-[12px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative py-2
+                  ${currentTab === "Posting" ? "font-black text-stone-800" : "font-normal text-stone-500 hover:text-stone-900"}
                 `}
               >
                 포스팅
@@ -153,8 +150,8 @@ function PortfolioContent() {
                   setCurrentTab("Contact")
                   router.push("/")
                 }}
-                className={`text-[12px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative 
-                  ${currentTab === "Contact" ? "font-black text-stone-800" : "font-normal text-stone-500"}
+                className={`text-[12px] md:text-[17px] whitespace-nowrap transition-all cursor-pointer relative py-2
+                  ${currentTab === "Contact" ? "font-black text-stone-800" : "font-normal text-stone-500 hover:text-stone-900"}
                 `}
               >
                 소개·연락처
@@ -164,7 +161,7 @@ function PortfolioContent() {
         </header>
       </div>
 
-      <div className="w-full h-4" />
+      <div className="w-full h-0 md:h-2" />
 
       <section className="w-full flex-1 overflow-hidden">
         <AnimatePresence mode="wait">
