@@ -94,24 +94,24 @@ export function Contact() {
                     </h3>
                     <div className="flex flex-col gap-1.5 md:gap-2">
                         <h4 className="text-[10px] md:text-[14px] font-bold text-stone-400 uppercase tracking-widest mb-1">
-                            기술 스택
+                            어떻게 만들었나요?
                         </h4>
                         <ul className="flex flex-col gap-1.5 md:gap-2.5">
                             <li className="flex items-center gap-1.5 md:gap-2 text-stone-600 text-[11px] md:text-[15px] font-medium leading-none">
                                 <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-blue-400" />
-                                Next.js 16
+                                안티그래비티로 뚝딱
                             </li>
                             <li className="flex items-center gap-1.5 md:gap-2 text-stone-600 text-[11px] md:text-[15px] font-medium leading-none">
                                 <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-blue-400" />
-                                TypeScript
+                                AI 친구와 함께한 작업
                             </li>
                             <li className="flex items-center gap-1.5 md:gap-2 text-stone-600 text-[11px] md:text-[15px] font-medium leading-none">
                                 <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-blue-400" />
-                                Tailwind 4
+                                코딩 몰라도 가능한 기적
                             </li>
                             <li className="flex items-center gap-1.5 md:gap-2 text-stone-600 text-[11px] md:text-[15px] font-medium leading-none">
                                 <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-blue-400" />
-                                Vercel
+                                세상에 하나뿐인 디자인
                             </li>
                         </ul>
                     </div>
