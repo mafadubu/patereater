@@ -82,64 +82,66 @@ export function Contact() {
 
             {/* Info Cards Column */}
             <div className="flex flex-col gap-3 mt-6 md:mt-8 w-full items-start">
-                {/* Blog Info Card */}
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="bg-[#f8fbff] py-3 px-4 md:py-4 md:px-5 rounded-[24px] md:rounded-[32px] border border-blue-100/30 flex flex-col justify-center text-left self-start"
-                >
-                    <div className="flex items-center gap-6 md:gap-10">
-                        <h3 className="text-[14px] md:text-[16px] font-black text-stone-900 tracking-tight shrink-0">
-                            블로그 정보
-                        </h3>
-                        <div className="flex items-center gap-1.5 md:gap-2">
-                            <div className="relative w-4 h-4 md:w-5 md:h-5 shrink-0">
-                                <Image
-                                    src="/images/antigravity-ci.png"
-                                    alt="Antigravity CI"
-                                    fill
-                                    className="object-contain"
-                                />
+                <div className="flex flex-col gap-3 w-full md:w-max">
+                    {/* Blog Info Card */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="bg-[#f8fbff] py-3 px-4 md:py-4 md:px-5 rounded-[24px] md:rounded-[32px] border border-blue-100/30 flex flex-col justify-center text-left w-full"
+                    >
+                        <div className="flex items-center justify-between gap-6 md:gap-10">
+                            <h3 className="text-[14px] md:text-[16px] font-black text-stone-900 tracking-tight shrink-0">
+                                블로그 정보
+                            </h3>
+                            <div className="flex items-center gap-1.5 md:gap-2">
+                                <div className="relative w-4 h-4 md:w-5 md:h-5 shrink-0">
+                                    <Image
+                                        src="/images/antigravity-ci.png"
+                                        alt="Antigravity CI"
+                                        fill
+                                        className="object-contain"
+                                    />
+                                </div>
+                                <span className="text-stone-700 text-[12px] md:text-[14px] font-bold tracking-tight font-sans">
+                                    Antigravity
+                                </span>
                             </div>
-                            <span className="text-stone-700 text-[12px] md:text-[14px] font-bold tracking-tight font-sans">
-                                Antigravity
-                            </span>
                         </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
 
-                {/* Visitor Counter Card */}
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="bg-[#f8fbff] py-3 px-4 md:py-4 md:px-5 rounded-[24px] md:rounded-[32px] border border-blue-100/30 flex flex-col justify-center text-left self-start"
-                >
-                    <div className="flex items-center gap-6 md:gap-10">
-                        <h3 className="text-[14px] md:text-[16px] font-black text-stone-900 tracking-tight shrink-0">
-                            페이지 방문자
-                        </h3>
-                        <div className="flex items-center gap-4 md:gap-6">
-                            <div className="flex items-center gap-2">
-                                <span className="text-[10px] md:text-[11px] font-bold text-stone-400 uppercase tracking-widest">
-                                    Today
-                                </span>
-                                <span className="text-[14px] md:text-[18px] font-black text-[#7DAEFF] leading-none">
-                                    {stats.today.toLocaleString()}
-                                </span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <span className="text-[10px] md:text-[11px] font-bold text-stone-400 uppercase tracking-widest">
-                                    Total
-                                </span>
-                                <span className="text-[14px] md:text-[18px] font-black text-stone-800 leading-none">
-                                    {stats.total.toLocaleString()}
-                                </span>
+                    {/* Visitor Counter Card */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="bg-[#f8fbff] py-3 px-4 md:py-4 md:px-5 rounded-[24px] md:rounded-[32px] border border-blue-100/30 flex flex-col justify-center text-left w-full"
+                    >
+                        <div className="flex items-center justify-between gap-6 md:gap-10">
+                            <h3 className="text-[14px] md:text-[16px] font-black text-stone-900 tracking-tight shrink-0">
+                                페이지 방문자
+                            </h3>
+                            <div className="flex items-center gap-4 md:gap-6">
+                                <div className="flex items-center gap-2">
+                                    <span className="text-[10px] md:text-[11px] font-bold text-stone-400 uppercase tracking-widest">
+                                        Today
+                                    </span>
+                                    <span className="text-[14px] md:text-[18px] font-black text-[#7DAEFF] leading-none">
+                                        {stats.today.toLocaleString()}
+                                    </span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <span className="text-[10px] md:text-[11px] font-bold text-stone-400 uppercase tracking-widest">
+                                        Total
+                                    </span>
+                                    <span className="text-[14px] md:text-[18px] font-black text-stone-800 leading-none">
+                                        {stats.total.toLocaleString()}
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
+                </div>
             </div>
         </motion.div>
     )
