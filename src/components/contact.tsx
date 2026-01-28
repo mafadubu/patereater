@@ -97,15 +97,16 @@ export function Contact() {
                             어떻게 만들었나요?
                         </h4>
                         <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 md:w-10 md:h-10 shrink-0">
-                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M50 5C25.1 5 5 25.1 5 50C5 74.9 25.1 95 50 95C74.9 95 95 74.9 95 50C95 25.1 74.9 5 50 5ZM50 85C30.7 85 15 69.3 15 50C15 30.7 30.7 15 50 15C69.3 15 85 30.7 85 50C85 69.3 69.3 85 50 85Z" fill="#4285F4" />
-                                    <path d="M50 25C36.2 25 25 36.2 25 50C25 63.8 36.2 75 50 75C63.8 75 75 63.8 75 50C75 36.2 63.8 25 50 25ZM50 65C41.7 65 35 58.3 35 50C35 41.7 41.7 35 50 35C58.3 35 65 41.7 65 50C65 58.3 58.3 65 50 65Z" fill="#34A853" />
-                                    <path d="M50 45C47.2 45 45 47.2 45 50C45 52.8 47.2 55 50 55C52.8 55 55 52.8 55 50C55 47.2 52.8 45 50 45Z" fill="#FBBC05" />
-                                </svg>
+                            <div className="relative w-8 h-8 md:w-10 md:h-10 shrink-0">
+                                <Image
+                                    src="/images/antigravity-ci.png"
+                                    alt="Antigravity CI"
+                                    fill
+                                    className="object-contain"
+                                />
                             </div>
-                            <span className="text-stone-700 text-[16px] md:text-[20px] font-black tracking-tight">
-                                안티그래비티
+                            <span className="text-stone-700 text-[18px] md:text-[22px] font-black tracking-tight font-sans">
+                                Antigravity
                             </span>
                         </div>
                     </div>
