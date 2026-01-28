@@ -80,16 +80,16 @@ export function Contact() {
                 </div>
             </section>
 
-            {/* Tech Stack & Visitor Counter Grid - Fixed 2 columns even on mobile */}
-            <div className="grid grid-cols-2 gap-4 md:gap-6 mt-6 md:mt-8 w-full">
-                {/* Tech Stack Card */}
+            {/* Info Cards Column */}
+            <div className="flex flex-col gap-3 mt-6 md:mt-8 w-full items-start">
+                {/* Blog Info Card */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 }}
                     className="bg-[#f8fbff] py-3 px-4 md:py-4 md:px-5 rounded-[24px] md:rounded-[32px] border border-blue-100/30 flex flex-col justify-center text-left self-start"
                 >
-                    <div className="flex items-center justify-between gap-6 md:gap-10">
+                    <div className="flex items-center gap-6 md:gap-10">
                         <h3 className="text-[14px] md:text-[16px] font-black text-stone-900 tracking-tight shrink-0">
                             블로그 정보
                         </h3>
@@ -111,30 +111,32 @@ export function Contact() {
 
                 {/* Visitor Counter Card */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="bg-[#f8fbff] p-5 md:p-8 rounded-[24px] md:rounded-[32px] border border-blue-100/30 flex flex-col gap-3 md:gap-4 text-left"
+                    className="bg-[#f8fbff] py-3 px-4 md:py-4 md:px-5 rounded-[24px] md:rounded-[32px] border border-blue-100/30 flex flex-col justify-center text-left self-start"
                 >
-                    <h3 className="text-[15px] md:text-[20px] font-black text-stone-900 tracking-tight">
-                        페이지 방문자
-                    </h3>
-                    <div className="flex flex-col gap-4 md:gap-6 mt-1 md:mt-2">
-                        <div className="flex flex-col">
-                            <span className="text-[10px] md:text-[12px] font-bold text-stone-400 uppercase tracking-widest mb-1">
-                                Today
-                            </span>
-                            <span className="text-[20px] md:text-[28px] font-black text-[#7DAEFF] leading-none">
-                                {stats.today.toLocaleString()}
-                            </span>
-                        </div>
-                        <div className="flex flex-col">
-                            <span className="text-[10px] md:text-[12px] font-bold text-stone-400 uppercase tracking-widest mb-1">
-                                Total
-                            </span>
-                            <span className="text-[20px] md:text-[28px] font-black text-stone-800 leading-none">
-                                {stats.total.toLocaleString()}
-                            </span>
+                    <div className="flex items-center gap-6 md:gap-10">
+                        <h3 className="text-[14px] md:text-[16px] font-black text-stone-900 tracking-tight shrink-0">
+                            페이지 방문자
+                        </h3>
+                        <div className="flex items-center gap-4 md:gap-6">
+                            <div className="flex items-center gap-2">
+                                <span className="text-[10px] md:text-[11px] font-bold text-stone-400 uppercase tracking-widest">
+                                    Today
+                                </span>
+                                <span className="text-[14px] md:text-[18px] font-black text-[#7DAEFF] leading-none">
+                                    {stats.today.toLocaleString()}
+                                </span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <span className="text-[10px] md:text-[11px] font-bold text-stone-400 uppercase tracking-widest">
+                                    Total
+                                </span>
+                                <span className="text-[14px] md:text-[18px] font-black text-stone-800 leading-none">
+                                    {stats.total.toLocaleString()}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </motion.div>
