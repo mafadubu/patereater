@@ -9,11 +9,11 @@ export function Contact() {
 
     useEffect(() => {
         const now = new Date();
-        const startOfProject = new Date("2025-01-20");
+        const startOfProject = new Date("2026-01-01");
         const diffDays = Math.floor((now.getTime() - startOfProject.getTime()) / (1000 * 3600 * 24));
 
-        // Base numbers + simulated growth (Lowered as requested)
-        const simulatedTotal = 240 + (diffDays * 12) + (now.getHours() * 2);
+        // Base numbers + simulated growth (Lowered even more)
+        const simulatedTotal = 150 + (diffDays * 8) + (now.getHours() * 2);
         const simulatedToday = 4 + (now.getHours() * 1) + (now.getMinutes() % 5);
 
         setStats({ total: simulatedTotal, today: simulatedToday });
