@@ -5,20 +5,6 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 
 export function Contact() {
-    const [stats, setStats] = useState({ total: 4812, today: 72 });
-
-    useEffect(() => {
-        const now = new Date();
-        const startOfProject = new Date("2026-01-01");
-        const diffDays = Math.floor((now.getTime() - startOfProject.getTime()) / (1000 * 3600 * 24));
-
-        // Base numbers + simulated growth (Lowered even more)
-        const simulatedTotal = 150 + (diffDays * 8) + (now.getHours() * 2);
-        const simulatedToday = 4 + (now.getHours() * 1) + (now.getMinutes() % 5);
-
-        setStats({ total: simulatedTotal, today: simulatedToday });
-    }, []);
-
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -106,38 +92,6 @@ export function Contact() {
                                 <span className="text-stone-700 text-[12px] md:text-[14px] font-bold tracking-tight font-sans">
                                     Antigravity
                                 </span>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Visitor Counter Card */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="bg-[#f8fbff] py-3 px-4 md:py-4 md:px-5 rounded-[24px] md:rounded-[32px] border border-blue-100/30 flex flex-col justify-center text-left w-full"
-                    >
-                        <div className="flex items-center justify-between gap-6 md:gap-10">
-                            <h3 className="text-[14px] md:text-[16px] font-black text-stone-900 tracking-tight shrink-0">
-                                페이지 방문자
-                            </h3>
-                            <div className="flex items-center gap-4 md:gap-6">
-                                <div className="flex items-center gap-2">
-                                    <span className="text-[10px] md:text-[11px] font-bold text-stone-400 uppercase tracking-widest">
-                                        Today
-                                    </span>
-                                    <span className="text-[14px] md:text-[18px] font-black text-[#7DAEFF] leading-none">
-                                        {stats.today.toLocaleString()}
-                                    </span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-[10px] md:text-[11px] font-bold text-stone-400 uppercase tracking-widest">
-                                        Total
-                                    </span>
-                                    <span className="text-[14px] md:text-[18px] font-black text-stone-800 leading-none">
-                                        {stats.total.toLocaleString()}
-                                    </span>
-                                </div>
                             </div>
                         </div>
                     </motion.div>
