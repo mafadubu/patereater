@@ -92,12 +92,9 @@ export function Contact() {
                     <h3 className="text-[15px] md:text-[20px] font-black text-stone-900 tracking-tight">
                         블로그 정보
                     </h3>
-                    <div className="flex flex-col gap-3 md:gap-4 flex-1 justify-center">
-                        <h4 className="text-[10px] md:text-[14px] font-bold text-stone-400 uppercase tracking-widest mb-1">
-                            어떻게 만들었나요?
-                        </h4>
-                        <div className="flex items-center gap-3">
-                            <div className="relative w-8 h-8 md:w-10 md:h-10 shrink-0">
+                    <div className="flex flex-col gap-2 md:gap-3 flex-1 justify-center">
+                        <div className="flex items-center gap-1.5 md:gap-2">
+                            <div className="relative w-3.5 h-3.5 md:w-5 md:h-5 shrink-0">
                                 <Image
                                     src="/images/antigravity-ci.png"
                                     alt="Antigravity CI"
@@ -105,7 +102,7 @@ export function Contact() {
                                     className="object-contain"
                                 />
                             </div>
-                            <span className="text-stone-700 text-[18px] md:text-[22px] font-black tracking-tight font-sans">
+                            <span className="text-stone-700 text-[10px] md:text-[14px] font-bold tracking-tight font-sans">
                                 Antigravity
                             </span>
                         </div>
