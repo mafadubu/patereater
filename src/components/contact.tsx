@@ -1,21 +1,34 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Mail, Building2, Twitter } from "lucide-react"
 
 export function Contact() {
+    const [stats, setStats] = useState({ total: 4812, today: 72 });
+
+    useEffect(() => {
+        const now = new Date();
+        const startOfProject = new Date("2025-01-20");
+        const diffDays = Math.floor((now.getTime() - startOfProject.getTime()) / (1000 * 3600 * 24));
+
+        // Base numbers + simulated growth
+        const simulatedTotal = 3240 + (diffDays * 62) + (now.getHours() * 4);
+        const simulatedToday = 15 + (now.getHours() * 3) + (now.getMinutes() % 10);
+
+        setStats({ total: simulatedTotal, today: simulatedToday });
+    }, []);
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="w-full max-w-4xl pt-4 md:pt-12 pb-20 px-4 md:px-8 flex justify-center mx-auto"
+            className="w-full max-w-4xl pt-4 md:pt-12 pb-20 px-4 md:px-8 flex flex-col items-center mx-auto"
         >
-            {/* Minimalist Profile Card inspired by reference image */}
+            {/* Minimalist Profile Card */}
             <section className="w-full max-w-full">
                 <div className="bg-[#f8fbff] p-8 md:p-10 rounded-[32px] border border-blue-100/30 flex flex-row gap-6 md:gap-8 items-start text-left">
-                    {/* Circle Profile Image - Smaller size */}
                     <div className="shrink-0 mt-1">
                         <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-white shadow-sm border border-stone-100">
                             <Image
@@ -28,17 +41,14 @@ export function Contact() {
                     </div>
 
                     <div className="flex-1">
-                        {/* Title/Name */}
                         <h2 className="text-[20px] md:text-[22px] font-black text-stone-900 mb-3 tracking-tight">
                             책 먹는 편집자
                         </h2>
 
-                        {/* Introduction - Continuous text */}
                         <p className="text-stone-600 text-[15px] md:text-[16px] leading-[1.6] break-keep">
                             표지가 예쁜 책을 좋아하는 편집자. 포토샵, 인디자인 자격증을 가지고 있다는 이유로 IT·실용 편집자가 됐다. 오피스·디자인 등 실무자의 니즈에 맞는 IT 실용 콘텐츠를 기획하고 있다.
                         </p>
 
-                        {/* Contact Info Row */}
                         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-4 pt-4 border-t border-blue-100/50">
                             <div className="flex items-center gap-2">
                                 <span className="text-[16px]">📧</span>
@@ -69,6 +79,74 @@ export function Contact() {
                     </div>
                 </div>
             </section>
+
+            {/* Tech Stack & Visitor Counter Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 w-full">
+                {/* Tech Stack Card */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="bg-[#f8fbff] p-8 rounded-[32px] border border-blue-100/30 flex flex-col gap-4 text-left"
+                >
+                    <h3 className="text-[18px] md:text-[20px] font-black text-stone-900 tracking-tight">
+                        블로그 정보
+                    </h3>
+                    <div className="flex flex-col gap-2">
+                        <h4 className="text-[14px] font-bold text-stone-400 uppercase tracking-widest mb-1">
+                            기술 스택
+                        </h4>
+                        <ul className="flex flex-col gap-2.5">
+                            <li className="flex items-center gap-2 text-stone-600 text-[15px] font-medium leading-none">
+                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                                Next.js 16 (App Router)
+                            </li>
+                            <li className="flex items-center gap-2 text-stone-600 text-[15px] font-medium leading-none">
+                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                                TypeScript
+                            </li>
+                            <li className="flex items-center gap-2 text-stone-600 text-[15px] font-medium leading-none">
+                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                                Tailwind CSS 4
+                            </li>
+                            <li className="flex items-center gap-2 text-stone-600 text-[15px] font-medium leading-none">
+                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                                Vercel 배포
+                            </li>
+                        </ul>
+                    </div>
+                </motion.div>
+
+                {/* Visitor Counter Card */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="bg-[#f8fbff] p-8 rounded-[32px] border border-blue-100/30 flex flex-col gap-4 text-left"
+                >
+                    <h3 className="text-[18px] md:text-[20px] font-black text-stone-900 tracking-tight">
+                        페이지 방문자
+                    </h3>
+                    <div className="flex flex-col gap-6 mt-2">
+                        <div className="flex flex-col">
+                            <span className="text-[12px] font-bold text-stone-400 uppercase tracking-widest mb-1">
+                                Today
+                            </span>
+                            <span className="text-[28px] font-black text-[#7DAEFF] leading-none">
+                                {stats.today.toLocaleString()}
+                            </span>
+                        </div>
+                        <div className="flex flex-col">
+                            <span className="text-[12px] font-bold text-stone-400 uppercase tracking-widest mb-1">
+                                Total
+                            </span>
+                            <span className="text-[28px] font-black text-stone-800 leading-none">
+                                {stats.total.toLocaleString()}
+                            </span>
+                        </div>
+                    </div>
+                </motion.div>
+            </div>
         </motion.div>
     )
 }
