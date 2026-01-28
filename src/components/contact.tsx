@@ -12,9 +12,9 @@ export function Contact() {
         const startOfProject = new Date("2025-01-20");
         const diffDays = Math.floor((now.getTime() - startOfProject.getTime()) / (1000 * 3600 * 24));
 
-        // Base numbers + simulated growth
-        const simulatedTotal = 3240 + (diffDays * 62) + (now.getHours() * 4);
-        const simulatedToday = 15 + (now.getHours() * 3) + (now.getMinutes() % 10);
+        // Base numbers + simulated growth (Lowered as requested)
+        const simulatedTotal = 240 + (diffDays * 12) + (now.getHours() * 2);
+        const simulatedToday = 4 + (now.getHours() * 1) + (now.getMinutes() % 5);
 
         setStats({ total: simulatedTotal, today: simulatedToday });
     }, []);
@@ -24,7 +24,7 @@ export function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="w-full max-w-4xl pt-4 md:pt-12 pb-20 px-4 md:px-8 flex flex-col items-center mx-auto"
+            className="w-full max-w-4xl pt-4 pb-20 px-4 md:px-8 flex flex-col items-center mx-auto"
         >
             {/* Minimalist Profile Card */}
             <section className="w-full max-w-full">
@@ -80,38 +80,38 @@ export function Contact() {
                 </div>
             </section>
 
-            {/* Tech Stack & Visitor Counter Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 w-full">
+            {/* Tech Stack & Visitor Counter Grid - Fixed 2 columns even on mobile */}
+            <div className="grid grid-cols-2 gap-4 md:gap-6 mt-6 md:mt-8 w-full">
                 {/* Tech Stack Card */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="bg-[#f8fbff] p-8 rounded-[32px] border border-blue-100/30 flex flex-col gap-4 text-left"
+                    className="bg-[#f8fbff] p-5 md:p-8 rounded-[24px] md:rounded-[32px] border border-blue-100/30 flex flex-col gap-3 md:gap-4 text-left"
                 >
-                    <h3 className="text-[18px] md:text-[20px] font-black text-stone-900 tracking-tight">
+                    <h3 className="text-[15px] md:text-[20px] font-black text-stone-900 tracking-tight">
                         블로그 정보
                     </h3>
-                    <div className="flex flex-col gap-2">
-                        <h4 className="text-[14px] font-bold text-stone-400 uppercase tracking-widest mb-1">
+                    <div className="flex flex-col gap-1.5 md:gap-2">
+                        <h4 className="text-[10px] md:text-[14px] font-bold text-stone-400 uppercase tracking-widest mb-1">
                             기술 스택
                         </h4>
-                        <ul className="flex flex-col gap-2.5">
-                            <li className="flex items-center gap-2 text-stone-600 text-[15px] font-medium leading-none">
-                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                                Next.js 16 (App Router)
+                        <ul className="flex flex-col gap-1.5 md:gap-2.5">
+                            <li className="flex items-center gap-1.5 md:gap-2 text-stone-600 text-[11px] md:text-[15px] font-medium leading-none">
+                                <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-blue-400" />
+                                Next.js 16
                             </li>
-                            <li className="flex items-center gap-2 text-stone-600 text-[15px] font-medium leading-none">
-                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                            <li className="flex items-center gap-1.5 md:gap-2 text-stone-600 text-[11px] md:text-[15px] font-medium leading-none">
+                                <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-blue-400" />
                                 TypeScript
                             </li>
-                            <li className="flex items-center gap-2 text-stone-600 text-[15px] font-medium leading-none">
-                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                                Tailwind CSS 4
+                            <li className="flex items-center gap-1.5 md:gap-2 text-stone-600 text-[11px] md:text-[15px] font-medium leading-none">
+                                <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-blue-400" />
+                                Tailwind 4
                             </li>
-                            <li className="flex items-center gap-2 text-stone-600 text-[15px] font-medium leading-none">
-                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                                Vercel 배포
+                            <li className="flex items-center gap-1.5 md:gap-2 text-stone-600 text-[11px] md:text-[15px] font-medium leading-none">
+                                <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-blue-400" />
+                                Vercel
                             </li>
                         </ul>
                     </div>
@@ -122,25 +122,25 @@ export function Contact() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="bg-[#f8fbff] p-8 rounded-[32px] border border-blue-100/30 flex flex-col gap-4 text-left"
+                    className="bg-[#f8fbff] p-5 md:p-8 rounded-[24px] md:rounded-[32px] border border-blue-100/30 flex flex-col gap-3 md:gap-4 text-left"
                 >
-                    <h3 className="text-[18px] md:text-[20px] font-black text-stone-900 tracking-tight">
+                    <h3 className="text-[15px] md:text-[20px] font-black text-stone-900 tracking-tight">
                         페이지 방문자
                     </h3>
-                    <div className="flex flex-col gap-6 mt-2">
+                    <div className="flex flex-col gap-4 md:gap-6 mt-1 md:mt-2">
                         <div className="flex flex-col">
-                            <span className="text-[12px] font-bold text-stone-400 uppercase tracking-widest mb-1">
+                            <span className="text-[10px] md:text-[12px] font-bold text-stone-400 uppercase tracking-widest mb-1">
                                 Today
                             </span>
-                            <span className="text-[28px] font-black text-[#7DAEFF] leading-none">
+                            <span className="text-[20px] md:text-[28px] font-black text-[#7DAEFF] leading-none">
                                 {stats.today.toLocaleString()}
                             </span>
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-[12px] font-bold text-stone-400 uppercase tracking-widest mb-1">
+                            <span className="text-[10px] md:text-[12px] font-bold text-stone-400 uppercase tracking-widest mb-1">
                                 Total
                             </span>
-                            <span className="text-[28px] font-black text-stone-800 leading-none">
+                            <span className="text-[20px] md:text-[28px] font-black text-stone-800 leading-none">
                                 {stats.total.toLocaleString()}
                             </span>
                         </div>
